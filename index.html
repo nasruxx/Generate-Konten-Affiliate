@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Script Konten Afiliasi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FileSaver.js for Word Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Generator Script Konten Afiliasi</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-1">Buat skrip promosi yang menarik dalam sekejap.</p>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900">
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-dark" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Kolom Kontrol -->
+            <aside class="lg:col-span-1">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <form id="generator-form">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="product-link" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Link Produk Afiliasi</label>
+                                <div class="mt-1">
+                                    <input type="url" name="product-link" id="product-link" class="block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="https://tokopedia.com/s/nama-produk" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="style" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Gaya Bahasa</label>
+                                <select id="style" name="style" class="mt-1 block w-full pl-3 pr-10 py-2 text-base bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                    <option>Persuasif & Mendesak</option>
+                                    <option>Informatif & Edukatif</option>
+                                    <option>Santai & Relatable</option>
+                                    <option>Storytelling</option>
+                                    <option>Mewah & Eksklusif</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="length" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Panjang Tulisan</label>
+                                <select id="length" name="length" class="mt-1 block w-full pl-3 pr-10 py-2 text-base bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                    <option>Pendek (untuk Tweet/IG Story)</option>
+                                    <option>Sedang (untuk Postingan Facebook/IG)</option>
+                                    <option>Panjang (untuk Blog/Email)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="count" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Jumlah Hasil</label>
+                                <input type="number" name="count" id="count" value="3" min="1" max="5" class="mt-1 block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <button type="submit" id="generate-btn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 transition-transform transform hover:scale-105">
+                                Buatkan Script Sekarang!
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </aside>
+
+            <!-- Kolom Hasil -->
+            <section class="lg:col-span-2">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Hasil Script</h2>
+                    <button id="export-word-btn" class="hidden items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                        </svg>
+                        Export ke Word
+                    </button>
+                </div>
+                <div id="results-container" class="space-y-6">
+                    <!-- Placeholder -->
+                    <div id="placeholder" class="text-center py-12 px-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Hasil script akan muncul di sini.</h3>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Isi form di samping dan klik tombol untuk memulai.</p>
+                    </div>
+                     <!-- Loader -->
+                    <div id="loader" class="hidden justify-center items-center py-12">
+                        <div class="loader"></div>
+                        <p class="ml-4 text-gray-600 dark:text-gray-400">AI sedang meracik kata-kata...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-2 px-5 rounded-lg shadow-xl text-sm transition-opacity duration-300 opacity-0">
+        Teks berhasil disalin!
+    </div>
+
+    <!-- Custom JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
+
